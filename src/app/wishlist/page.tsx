@@ -8,6 +8,7 @@ import { Heart, ShoppingCart, Trash2, HeartOff } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { Product } from '@/types';
 
 export default function WishlistPage() {
   const wishlistItems = useAppSelector((state) => state.wishlist.items);
@@ -18,7 +19,7 @@ export default function WishlistPage() {
     toast.success('Removed from wishlist');
   };
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
     toast.success('Added to cart!');
   };

@@ -6,6 +6,7 @@ import { markAsRead, markAllAsRead, deleteNotification } from '@/lib/features/no
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, X, Check, AlertCircle, Info, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Notification } from '@/types';
 
 export default function NotificationCenter() {
   const { notifications, unreadCount } = useAppSelector((state) => state.notifications);
@@ -26,7 +27,7 @@ export default function NotificationCenter() {
     }
   };
 
-  const handleNotificationClick = (notification: any) => {
+  const handleNotificationClick = (notification: Notification) => {
     dispatch(markAsRead(notification.id));
     if (notification.link) {
       router.push(notification.link);

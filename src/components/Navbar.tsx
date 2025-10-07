@@ -8,14 +8,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import UserProfileMenu from './UserProfileMenu';
 import NotificationCenter from './NotificationCenter';
 import LiveSearch from './LiveSearch';
-import { useAppDispatch } from '@/lib/hooks';
-import { toggleTheme } from '@/lib/features/themeSlice';
 
 export default function Navbar() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const wishlistCount = useAppSelector((state) => state.wishlist.items.length);
-  const themeMode = useAppSelector((state) => state.theme.mode);
-  const dispatch = useAppDispatch();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

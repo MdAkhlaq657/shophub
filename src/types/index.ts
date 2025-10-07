@@ -110,6 +110,16 @@ export interface WishlistState {
   items: Product[];
 }
 
+export interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+  date: string;
+  read: boolean;
+  link?: string;
+}
+
 export interface User {
   id: string;
   name: string;
