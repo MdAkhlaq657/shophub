@@ -53,7 +53,7 @@ export default function Navbar() {
               <Store className="w-8 h-8 text-white" />
             </motion.div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden md:block">
-              ShopHub Pro
+              ShopHub
             </span>
           </Link>
 

@@ -16,7 +16,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hi! Welcome to ShopHub Pro! How can I help you today?',
+      text: 'Hi! Welcome to ShopHub! How can I help you today?',
       sender: 'support',
       timestamp: new Date(),
     },

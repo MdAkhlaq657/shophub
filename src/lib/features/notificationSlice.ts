@@ -5,7 +5,7 @@ const initialState: NotificationState = {
   notifications: [
     {
       id: '1',
-      title: 'Welcome to ShopHub Pro! 🎉',
+      title: 'Welcome to ShopHub! 🎉',
       message: 'Explore our amazing collection of products',
       type: 'success',
       date: new Date().toISOString(),

@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>ShopHub Pro - Advanced E-commerce Platform</title>
+        <title>ShopHub - Advanced E-commerce Platform</title>
         <meta name="description" content="Discover amazing products at unbeatable prices" />
       </head>
       <body className="antialiased">

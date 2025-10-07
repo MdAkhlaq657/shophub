@@ -95,7 +95,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   <ShoppingBag className="w-16 h-16 text-white mx-auto mb-4" />
                 </motion.div>
                 <h2 className="text-3xl font-bold text-white mb-2">
-                  {isLogin ? 'Welcome Back!' : 'Join ShopHub Pro'}
+                  {isLogin ? 'Welcome Back!' : 'Join ShopHub'}
                 </h2>
                 <p className="text-white/90">
                   {isLogin ? 'Sign in to continue shopping' : 'Create your account today'}
