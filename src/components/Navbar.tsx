@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '@/lib/hooks';
-import { ShoppingCart, Store, Menu, X, Heart, Moon, Sun } from 'lucide-react';
+import { ShoppingCart, Store, Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import UserProfileMenu from './UserProfileMenu';
+import NotificationCenter from './NotificationCenter';
+import LiveSearch from './LiveSearch';
 import { useAppDispatch } from '@/lib/hooks';
 import { toggleTheme } from '@/lib/features/themeSlice';
 
@@ -54,40 +56,35 @@ export default function Navbar() {
             >
               <Store className="w-8 h-8 text-white" />
             </motion.div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden md:block">
               ShopHub Pro
             </span>
           </Link>
 
+          {/* Desktop Search - Center */}
+          <div className="hidden lg:block flex-1 max-w-2xl mx-8">
+            <LiveSearch />
+          </div>
+
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors relative group"
+                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all group-hover:w-full"></span>
               </Link>
             ))}
           </div>
 
           {/* Right Side Icons */}
-          <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 180 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => dispatch(toggleTheme())}
-              className="hidden md:block text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              {themeMode === 'light' ? (
-                <Moon className="w-6 h-6" />
-              ) : (
-                <Sun className="w-6 h-6" />
-              )}
-            </motion.button>
+          <div className="flex items-center space-x-2">
+            {/* Notifications */}
+            <div className="hidden md:block">
+              <NotificationCenter />
+            </div>
 
             {/* Wishlist */}
             <Link href="/wishlist" className="relative hidden md:block">
@@ -96,7 +93,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <Heart className="w-6 h-6 text-gray-700 dark:text-gray-200 hover:text-red-500 transition-colors" />
+                <Heart className="w-6 h-6 text-gray-700 dark:text-gray-200" />
                 {wishlistCount > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
@@ -116,7 +113,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <ShoppingCart className="w-6 h-6 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" />
+                <ShoppingCart className="w-6 h-6 text-gray-700 dark:text-gray-200" />
                 {totalQuantity > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
@@ -137,11 +134,16 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-gray-700 dark:text-gray-200"
+              className="lg:hidden text-gray-700 dark:text-gray-200 p-2"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+        </div>
+
+        {/* Mobile Search */}
+        <div className="lg:hidden pb-4">
+          <LiveSearch />
         </div>
       </div>
 
@@ -175,3 +177,6 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+
+
+ 

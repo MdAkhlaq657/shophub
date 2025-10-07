@@ -6,6 +6,7 @@ import authReducer from './features/authSlice';
 import comparisonReducer from './features/comparisonSlice';
 import recentlyViewedReducer from './features/recentlyViewedSlice';
 import themeReducer from './features/themeSlice';
+import notificationReducer from './features/notificationSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     comparison: comparisonReducer,
     recentlyViewed: recentlyViewedReducer,
     theme: themeReducer,
+    notifications: notificationReducer,
   },
 });
 

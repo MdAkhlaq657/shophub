@@ -6,6 +6,10 @@
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
   }
+  
+  .dark body {
+    @apply bg-gray-900 text-white;
+  }
 }
 
 @layer components {
@@ -18,11 +22,11 @@
   }
   
   .card {
-    @apply bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden;
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden;
   }
   
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
   }
   
   .gradient-bg {
@@ -30,7 +34,7 @@
   }
   
   .glass-effect {
-    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-white/20 dark:border-gray-700/20;
   }
 }
 
@@ -46,16 +50,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+  @apply bg-gray-400 dark:bg-gray-600 rounded-md;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  @apply bg-gray-500 dark:bg-gray-500;
 }
 
 /* Smooth Animations */
@@ -72,4 +75,13 @@
   animation: shimmer 2s infinite;
   background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
   background-size: 2000px 100%;
+}
+
+.dark .skeleton {
+  background: linear-gradient(to right, #374151 8%, #1f2937 18%, #374151 33%);
+}
+
+/* Smooth transitions for dark mode */
+* {
+  @apply transition-colors duration-200;
 }
