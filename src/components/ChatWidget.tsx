@@ -91,7 +91,7 @@ export default function ChatWidget() {
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-white">Customer Support</h3>
-                <p className="text-sm text-white/80">We're here to help!</p>
+                <p className="text-sm text-white/80">We&apos;re here to help!</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}

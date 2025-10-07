@@ -55,7 +55,7 @@ export default function OrdersPage() {
             </motion.div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">No Orders Yet</h2>
             <p className="text-xl text-gray-600 mb-8">
-              You haven't placed any orders. Start shopping now!
+              You haven&apos;t placed any orders. Start shopping now!
             </p>
             <Link href="/products">
               <motion.button

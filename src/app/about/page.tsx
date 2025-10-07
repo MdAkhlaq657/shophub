@@ -57,7 +57,7 @@ export default function AboutPage() {
             About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ShopHub</span>
           </h1>
           <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're revolutionizing online shopping with premium products, unbeatable prices, and exceptional service.
+            We&apos;re revolutionizing online shopping with premium products, unbeatable prices, and exceptional service.
           </p>
         </motion.div>
 
@@ -98,7 +98,7 @@ export default function AboutPage() {
                 Our Story
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Founded in 2025, ShopHub began with a simple mission: to make premium products accessible to everyone. We believe that quality shouldn't come with a premium price tag.
+                Founded in 2025, ShopHub began with a simple mission: to make premium products accessible to everyone. We believe that quality shouldn&apos;t come with a premium price tag.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
                 Today, we serve over 50,000 happy customers across 100+ countries, offering a curated selection of 10,000+ products from trusted brands worldwide.

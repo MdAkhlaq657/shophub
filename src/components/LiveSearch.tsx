@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { Search, TrendingUp, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { Product } from '@/types';
-import Image from 'next/image';
+import { useState, useEffect, useRef } from "react";
+import { Search, TrendingUp, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { Product } from "@/types";
+import Image from "next/image";
 
 export default function LiveSearch() {
   const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -18,7 +18,7 @@ export default function LiveSearch() {
   const router = useRouter();
 
   useEffect(() => {
-    const searches = localStorage.getItem('recentSearches');
+    const searches = localStorage.getItem("recentSearches");
     if (searches) {
       setRecentSearches(JSON.parse(searches));
     }
@@ -26,13 +26,16 @@ export default function LiveSearch() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -50,14 +53,19 @@ export default function LiveSearch() {
   const searchProducts = async (searchQuery: string) => {
     setLoading(true);
     try {
-      const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
-      const filtered = response.data.filter(product =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchQuery.toLowerCase())
-      ).slice(0, 5);
+      const response = await axios.get<Product[]>(
+        "https://fakestoreapi.com/products"
+      );
+      const filtered = response.data
+        .filter(
+          (product) =>
+            product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .slice(0, 5);
       setSuggestions(filtered);
     } catch (error) {
-      console.error('Search error:', error);
+      console.error("Search error:", error);
     } finally {
       setLoading(false);
     }
@@ -65,19 +73,22 @@ export default function LiveSearch() {
 
   const handleSearch = (searchQuery: string) => {
     if (searchQuery.trim()) {
-      const updated = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5);
+      const updated = [
+        searchQuery,
+        ...recentSearches.filter((s) => s !== searchQuery),
+      ].slice(0, 5);
       setRecentSearches(updated);
-      localStorage.setItem('recentSearches', JSON.stringify(updated));
+      localStorage.setItem("recentSearches", JSON.stringify(updated));
       router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
       setIsOpen(false);
-      setQuery('');
+      setQuery("");
     }
   };
 
   const handleProductClick = (productId: number) => {
     router.push(`/products/${productId}`);
     setIsOpen(false);
-    setQuery('');
+    setQuery("");
   };
 
   return (
@@ -97,7 +108,7 @@ export default function LiveSearch() {
         />
         {query && (
           <button
-            onClick={() => setQuery('')}
+            onClick={() => setQuery("")}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           >
             <X className="w-5 h-5" />
@@ -116,12 +127,16 @@ export default function LiveSearch() {
             {loading ? (
               <div className="p-8 text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="text-gray-600 dark:text-gray-400 mt-4">Searching...</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-4">
+                  Searching...
+                </p>
               </div>
             ) : suggestions.length > 0 ? (
               <div>
                 <div className="p-3 border-b border-gray-200 dark:border-gray-700">
-                  <p className="text-sm font-semibold text-gray-600 dark:text-gray-400">Products</p>
+                  <p className="text-sm font-semibold text-gray-600 dark:text-gray-400">
+                    Products
+                  </p>
                 </div>
                 {suggestions.map((product) => (
                   <motion.div
@@ -155,7 +170,9 @@ export default function LiveSearch() {
               </div>
             ) : query ? (
               <div className="p-8 text-center">
-                <p className="text-gray-600 dark:text-gray-400">No results found for "{query}"</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {`No results found for "${query}"`}
+                </p>
               </div>
             ) : recentSearches.length > 0 ? (
               <div>
@@ -167,7 +184,7 @@ export default function LiveSearch() {
                   <button
                     onClick={() => {
                       setRecentSearches([]);
-                      localStorage.removeItem('recentSearches');
+                      localStorage.removeItem("recentSearches");
                     }}
                     className="text-xs text-gray-500 hover:text-red-500 transition-colors"
                   >
@@ -181,7 +198,9 @@ export default function LiveSearch() {
                     className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer flex items-center space-x-3"
                   >
                     <Search className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-900 dark:text-white">{search}</span>
+                    <span className="text-gray-900 dark:text-white">
+                      {search}
+                    </span>
                   </div>
                 ))}
               </div>

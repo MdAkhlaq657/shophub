@@ -18,6 +18,7 @@ export default function ComparePage() {
     toast.success('Removed from comparison');
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
     toast.success('Added to cart!');
